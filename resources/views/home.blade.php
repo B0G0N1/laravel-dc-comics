@@ -23,7 +23,7 @@
             <!-- Griglia dei fumetti -->
             <div class="row">
                 <!-- Ciclo sui fumetti -->
-                {{-- @foreach ($comics as $comic)
+                @foreach ($comics as $comic)
                     <div class="col-12 col-md-3 col-lg-2">
                         <div class="comic-card border-0 m-1">
                             <!-- Miniatura del fumetto -->
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach --}}
+                @endforeach
             </div>
 
             <!-- Pulsante "Load More" -->

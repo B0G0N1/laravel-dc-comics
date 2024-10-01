@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     $comics = config('db');
+
+//     return view('home', compact('comics'));
+// })->name('homepage');
+
+
+Route::get('/', [PageController::class, 'home'])->name('homepage');
