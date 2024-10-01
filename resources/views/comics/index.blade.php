@@ -26,19 +26,22 @@
                                 <h6 class="card-subtitle mb-2 text-muted">{{ $comic['title'] }}</h6>
                                 <!-- Descrizione (troncata) -->
                                 <p class="card-text">
+                                    {{-- Metodo per troncare la stringa (cercato su internet) --}}
                                     {{ Str::limit($comic['description'], 100, '...') }}
                                 </p>
                                 <!-- Dettagli aggiuntivi -->
                                 <ul class="list-group list-group-flush mt-auto">
                                     <li class="list-group-item"><strong>Prezzo:</strong> {{ $comic['price'] }}</li>
                                     <li class="list-group-item"><strong>Data di Vendita:</strong>
+                                        {{-- Metodo per sistemare la data (cercato su internet) --}}
                                         {{ \Carbon\Carbon::parse($comic['sale_date'])->format('d/m/Y') }}</li>
                                     <li class="list-group-item"><strong>Tipo:</strong> {{ $comic['type'] }}</li>
                                 </ul>
                             </div>
                             <!-- Pulsante per maggiori dettagli (opzionale) -->
                             <div class="card-footer bg-transparent border-0">
-                                <a href="#" class="btn btn-primary w-100">Scopri di più</a>
+                                <a href="{{ route('comics.show', ['comic' => $comic->id]) }}"
+                                    class="btn btn-primary w-100">Scopri di più</a>
                             </div>
                         </div>
                     </div>
