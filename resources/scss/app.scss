@@ -1,3 +1,150 @@
 @import '~bootstrap/scss/bootstrap';
 
-@import '@fortawesome/fontawesome-free/css/all.css';
+// Stile per il logo
+.logo {
+    img {
+        width: 75px;
+    }
+}
+
+// Stile per la barra di ricerca
+.search {
+    input {
+        border: none;
+        border-bottom: 3px solid blue;
+    }
+}
+
+// Link attivo nella navbar
+.nav-link.active {
+    border-bottom: 2px solid blue;
+    color: blue;
+}
+
+// Stile per il Jumbotron
+#jumbotron {
+    background-image: url('../img/jumbotron.jpg');
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+// Stile generale del main
+main {
+    background-color: #000;
+    color: #fff;
+
+    // Stile per il container dei fumetti
+    #comics-container {
+        padding: 50px 0px;
+        position: relative;
+    }
+
+    .comic-card {
+        max-width: 100%;
+    }
+
+    .thumb {
+        height: 100px;
+        width: 100px;
+    }
+
+    .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+    }
+
+    .card-body {
+        margin-top: 10px;
+    }
+
+    .title {
+        background-color: #0c7cec;
+        position: absolute;
+        top: -20px;
+    }
+
+    .load-more {
+        background-color: #0c7cec;
+        position: absolute;
+        left: 40%;
+        bottom: 15px;
+    }
+
+    #adv {
+        background-color: #0c7cec;
+
+        img {
+            height: 50px;
+            width: 40px;
+        }
+    }
+}
+
+// Stile per il footer
+footer {
+    background-image: url('../img/footer-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #999999;
+    font-size: 14px;
+
+    .bg-logo {
+        background-image: url('../img/dc-logo-bg.png');
+        background-position: right center;
+        background-size: auto 130%;
+        background-repeat: no-repeat;
+    }
+
+    a {
+        color: #999999;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+    
+    h5 {
+        color: #ffffff;
+        font-size: 16px;
+        margin: 20px 0px;
+    }
+    
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    ul li {
+        margin-bottom: 10px;
+    }
+    
+    ul li a {
+        font-size: 14px;
+    }
+    
+    .logo-footer {
+        width: 100px;
+        filter: grayscale(100%);
+        opacity: 0.8;
+    }
+    
+    .logo-footer:hover {
+        filter: none;
+        opacity: 1;
+    }
+    
+    p {
+        margin-top: 10px;
+        color: #999999;
+    }
+    
+    .small {
+        font-size: 12px;
+    }
+}
