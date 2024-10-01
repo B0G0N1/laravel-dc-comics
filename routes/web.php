@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\PageController as PageController;
+use App\Http\Controllers\ComicController as ComicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ use App\Http\Controllers\PageController;
 
 
 Route::get('/', [PageController::class, 'home'])->name('homepage');
+Route::resource('comics', ComicController::class);

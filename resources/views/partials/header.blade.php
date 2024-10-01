@@ -10,12 +10,13 @@
                     <!-- Menu di navigazione -->
                     <div class="menu">
                         <ul class="list-unstyled d-flex m-0">
-                            <li class="nav-item px-3 py-5">
-                                <a class="nav-link" href="#">Characters</a>
-                            </li>
                             <li
                                 class="nav-item px-3 py-5 {{ Route::currentRouteName() === 'homepage' ? 'active' : '' }}">
-                                <a class="nav-link" href="#">Comics</a>
+                                <a class="nav-link" href="{{ route('homepage') }}">Home</a>
+                            </li>
+                            <li
+                                class="nav-item px-3 py-5 {{ Route::currentRouteName() === 'comics.index' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('comics.index') }}">Comics</a>
                             </li>
                             <li class="nav-item px-3 py-5">
                                 <a class="nav-link" href="#">Movies</a>

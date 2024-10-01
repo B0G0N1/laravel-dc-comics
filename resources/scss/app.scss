@@ -16,7 +16,7 @@
 }
 
 // Link attivo nella navbar
-.nav-link.active {
+.nav-item.active {
     border-bottom: 2px solid blue;
     color: blue;
 }
@@ -147,4 +147,9 @@ footer {
     .small {
         font-size: 12px;
     }
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
 }
