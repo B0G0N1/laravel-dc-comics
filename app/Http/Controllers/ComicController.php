@@ -14,6 +14,7 @@ class ComicController extends Controller
      */
     public function index()
     {
+        // Recupera tutti i fumetti dal database e li passa alla vista 'comics.index'
         $comics = Comic::all();
         return view('comics.index', compact('comics'));
     }
@@ -25,6 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
+        // Ritorna la vista per creare un nuovo fumetto
         return view('comics.create');
     }
 
@@ -50,7 +52,7 @@ class ComicController extends Controller
         $comic->series = $form_data['series'];
         
         // Imposta una data di default se il campo sale_date è vuoto
-        $comic->sale_date = '2024-01-01';
+        $comic->sale_date = '2024-01-01'; // Valore predefinito, potrebbe essere reso dinamico se necessario
     
         $comic->type = $form_data['type'];
         $comic->artists = $form_data['artists'];
@@ -71,7 +73,10 @@ class ComicController extends Controller
      */
     public function show($id)
     {
+        // Recupera il fumetto con l'ID specificato dal database
         $comic = Comic::find($id);
+        
+        // Passa il fumetto alla vista 'comics.show' per la visualizzazione
         return view('comics.show', compact('comic'));
     }
 
@@ -83,7 +88,7 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Da implementare: recupera il fumetto da modificare e mostra il form di modifica
     }
 
     /**
@@ -95,7 +100,7 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Da implementare: aggiorna i dati del fumetto nel database con quelli inviati dal form di modifica
     }
 
     /**
@@ -106,6 +111,6 @@ class ComicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Da implementare: elimina il fumetto con l'ID specificato dal database
     }
 }
