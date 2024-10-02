@@ -36,8 +36,32 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // Recupero i dati inviati dalla form
+        $form_data = $request->all();
+    
+        // Creo la nuova istanza della classe Comic
+        $comic = new Comic();
+    
+        // Valorizzo i suoi attributi
+        $comic->title = $form_data['title'];
+        $comic->description = $form_data['description'];
+        $comic->thumb = $form_data['thumb'];
+        $comic->price = $form_data['price'];
+        $comic->series = $form_data['series'];
+        
+        // Imposta una data di default se il campo sale_date è vuoto
+        $comic->sale_date = '2024-01-01';
+    
+        $comic->type = $form_data['type'];
+        $comic->artists = $form_data['artists'];
+        $comic->writers = $form_data['writers'];
+    
+        // Salvo l'istanza del fumetto nel database
+        $comic->save();
+    
+        // Effettuo un redirect alla pagina con l'elenco dei fumetti
+        return redirect()->route('comics.index');
+    }       
 
     /**
      * Display the specified resource.
