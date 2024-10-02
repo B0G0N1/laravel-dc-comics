@@ -1,6 +1,6 @@
-<!------------------------
-    CONSEGNA ESERCIZIO
-------------------------->
+<!--------------------------
+    CONSEGNA ESERCIZIO 1
+--------------------------->
 
 Esercizio di oggi:
 nome repo: laravel-dc-comics
@@ -18,6 +18,19 @@ Iniziate a definire le prime operazioni CRUD con le relative view:
 -   store()
 
 Bonus: Per popolare la tabella utilizzate nel seeder il file in allegato.
+
+<!--------------------------
+    CONSEGNA ESERCIZIO 2
+--------------------------->
+
+Esercizio di oggi:
+nome repo: laravel-dc-comics
+Ciao ragazzi,
+oggi lavorate sulla stessa repo di venerdì e completate le operazioni CRUD.
+Bonus 1:
+tramite javascript, quando l'utente clicca sul pulsante "delete", chiedere conferma della cancellazione, prima di eliminare l'elemento. La richiesta di cancellazione avviene tramite onclick e confirm
+Bonus 2: Realizzare una modale di bootstrap attraverso la quale chiedere la conferma della cancellazione del record.
+Buon lavoro!
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 

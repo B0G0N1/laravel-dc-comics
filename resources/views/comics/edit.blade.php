@@ -2,31 +2,33 @@
 
 @section('content')
     <div class="container py-5">
-        <h1>Aggiungi un nuovo fumetto</h1>
+        <h1>Modifica fumetto</h1>
 
         <!-- Form per aggiungere un nuovo fumetto -->
-        <form action="{{ route('comics.store') }}" method="POST">
+        <form action="{{ route('comics.update', ['comic' => $comic->id]) }}" method="POST">
             <!-- Protezione CSRF per prevenire attacchi Cross-Site Request Forgery -->
             @csrf
+
+            @method('PUT')
 
             <!-- Campo per il titolo del fumetto -->
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <!-- Il valore precedente viene mantenuto in caso di errore nel form (con la funzione old()) -->
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
+                <input type="text" class="form-control" id="title" name="title" value="{{ $comic->title }}" required>
             </div>
 
             <!-- Campo per la descrizione del fumetto -->
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description') }}</textarea>
+                <textarea class="form-control" id="description" name="description" rows="3" required>{{ $comic->description }}"</textarea>
             </div>
 
             <!-- Campo per l'URL della miniatura del fumetto -->
             <div class="mb-3">
                 <label for="thumb" class="form-label">URL della miniatura</label>
                 <!-- Input di tipo URL per garantire che l'utente inserisca un link valido -->
-                <input type="url" class="form-control" id="thumb" name="thumb" value="{{ old('thumb') }}"
+                <input type="url" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}"
                     required>
             </div>
 
@@ -34,42 +36,48 @@
             <div class="mb-3">
                 <label for="price" class="form-label">Prezzo</label>
                 <!-- Input di tipo numero con step di 0.01 per i prezzi decimali -->
-                <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+                <input type="number" step="0.01" class="form-control" id="price" name="price"
+                    value="{{ $comic->price }}" required>
             </div>
 
             <!-- Campo per la serie del fumetto -->
             <div class="mb-3">
                 <label for="series" class="form-label">Serie</label>
-                <input type="text" class="form-control" id="series" name="series" required>
+                <input type="text" class="form-control" id="series" name="series" value="{{ $comic->series }}"
+                    required>
             </div>
 
             <!-- Campo per la data di vendita del fumetto -->
             <div class="mb-3">
                 <label for="sale_date" class="form-label">Data di Vendita</label>
                 <!-- Input di tipo date per selezionare la data -->
-                <input type="date" class="form-control" id="sale_date" name="sale_date" required>
+                <input type="date" class="form-control" id="sale_date" name="sale_date" value="{{ $comic->sale_date }}"
+                    required>
             </div>
 
             <!-- Campo per il tipo del fumetto (ad esempio graphic novel, comic book, ecc.) -->
             <div class="mb-3">
                 <label for="type" class="form-label">Tipo</label>
-                <input type="text" class="form-control" id="type" name="type" required>
+                <input type="text" class="form-control" id="type" name="type" value="{{ $comic->type }}"
+                    required>
             </div>
 
             <!-- Campo per gli artisti del fumetto -->
             <div class="mb-3">
                 <label for="artists" class="form-label">Artisti</label>
-                <input type="text" class="form-control" id="artists" name="artists" required>
+                <input type="text" class="form-control" id="artists" name="artists" value="{{ $comic->artists }}"
+                    required>
             </div>
 
             <!-- Campo per gli scrittori del fumetto -->
             <div class="mb-3">
                 <label for="writers" class="form-label">Scrittori</label>
-                <input type="text" class="form-control" id="writers" name="writers" required>
+                <input type="text" class="form-control" id="writers" name="writers" value="{{ $comic->writers }}"
+                    required>
             </div>
 
-            <!-- Pulsante per inviare il form e aggiungere il fumetto -->
-            <button type="submit" class="btn btn-primary">Aggiungi Fumetto</button>
+            <!-- Pulsante per inviare il form e modificare il fumetto -->
+            <button type="submit" class="btn btn-primary">Modifica Fumetto</button>
         </form>
     </div>
 @endsection

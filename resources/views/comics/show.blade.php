@@ -35,8 +35,10 @@
                     <li class="list-group-item"><strong>Scrittori:</strong> {{ $comic->writers }}</li>
                 </ul>
 
-                <!-- Pulsante per tornare alla lista dei fumetti -->
-                <a href="{{ route('comics.index') }}" class="btn btn-primary">Torna alla lista</a>
+                <!-- Pulsante per modificare fumetto -->
+                <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}" class="btn btn-primary">Modifica</a>
+                <!-- Pulsante per eliminare fumetto -->
+                <a href="{{ route('comics.index') }}" class="btn btn-danger">Cancella</a>
             </div>
         </div>
     </div>

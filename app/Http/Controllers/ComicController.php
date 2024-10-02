@@ -43,20 +43,22 @@ class ComicController extends Controller
     
         // Creo la nuova istanza della classe Comic
         $comic = new Comic();
-    
+
+        $comic->fill($form_data);
+
         // Valorizzo i suoi attributi
-        $comic->title = $form_data['title'];
-        $comic->description = $form_data['description'];
-        $comic->thumb = $form_data['thumb'];
-        $comic->price = $form_data['price'];
-        $comic->series = $form_data['series'];
+        // $comic->title = $form_data['title'];
+        // $comic->description = $form_data['description'];
+        // $comic->thumb = $form_data['thumb'];
+        // $comic->price = $form_data['price'];
+        // $comic->series = $form_data['series'];
         
         // Imposta una data di default se il campo sale_date è vuoto
-        $comic->sale_date = '2024-01-01'; // Valore predefinito, potrebbe essere reso dinamico se necessario
+        // $comic->sale_date = '2024-01-01';
     
-        $comic->type = $form_data['type'];
-        $comic->artists = $form_data['artists'];
-        $comic->writers = $form_data['writers'];
+        // $comic->type = $form_data['type'];
+        // $comic->artists = $form_data['artists'];
+        // $comic->writers = $form_data['writers'];
     
         // Salvo l'istanza del fumetto nel database
         $comic->save();
@@ -88,7 +90,11 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        // Da implementare: recupera il fumetto da modificare e mostra il form di modifica
+        // Recupera il fumetto con l'ID specificato dal database
+        $comic = Comic::find($id);
+        
+        // Passa il fumetto alla vista 'edit.show' per la visualizzazione
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -98,10 +104,13 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        // Da implementare: aggiorna i dati del fumetto nel database con quelli inviati dal form di modifica
-    }
+        $form_data = $request->all();
+        $comic->update($form_data);
+    
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
+    }    
 
     /**
      * Remove the specified resource from storage.
