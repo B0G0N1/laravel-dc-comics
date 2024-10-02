@@ -23,7 +23,7 @@
                 </ul>
 
                 <!-- Pulsante per tornare indietro -->
-                <a href="{{ route('comics.index') }}" class="btn btn-secondary">Torna alla lista</a>
+                <a href="{{ route('comics.index') }}" class="btn btn-primary">Torna alla lista</a>
             </div>
         </div>
     </div>

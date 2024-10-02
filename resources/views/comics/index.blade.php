@@ -3,10 +3,14 @@
 @section('content')
     <div id="comics-container" class="py-5">
         <div class="container">
-            <!-- Titolo della sezione -->
-            <div class="row mb-4">
-                <div class="col-12">
+            <div class="row mb-5">
+                <!-- Titolo della sezione -->
+                <div class="col-10">
                     <h2 class="fw-bold">CURRENT SERIES</h2>
+                </div>
+                <!-- Pulsante per la modifa -->
+                <div class="col-2">
+                    <a href="{{ route('comics.create') }}" class="btn btn-primary w-100">Aggiungi prodotto</a>
                 </div>
             </div>
 
