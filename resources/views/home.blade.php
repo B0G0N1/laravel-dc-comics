@@ -24,15 +24,18 @@
             <div class="row">
                 <!-- Ciclo sui fumetti -->
                 @foreach ($comics as $comic)
-                    <div class="col-12 col-md-3 col-lg-2">
-                        <div class="comic-card border-0 m-1">
+                    <div class="col-12 col-md-3 col-lg-2 mb-4">
+                        <div class="comic-card border-0 m-1 d-flex flex-column justify-content-center align-items-center">
                             <!-- Miniatura del fumetto -->
                             <div class="thumb">
-                                <img class="img-fluid" src="{{ $comic['thumb'] }}" alt="{{ $comic['series'] }}">
+                                <a href="{{ route('comics.show', ['comic' => $comic['id']]) }}">
+                                    <img class="img-fluid" src="{{ $comic['thumb'] }}" alt="{{ $comic['series'] }}">
+                                </a>
                             </div>
                             <!-- Titolo della serie del fumetto -->
                             <div class="card-body">
-                                <span class="text-uppercase">{{ $comic['series'] }}</span>
+                                <a class="text-uppercase text-reset text-decoration-none m-0"
+                                    href="{{ route('comics.show', ['comic' => $comic['id']]) }}">{{ $comic['series'] }}</a>
                             </div>
                         </div>
                     </div>
@@ -41,7 +44,7 @@
 
             <!-- Pulsante "Load More" -->
             <div class="row load-more px-4 py-2">
-                <p class="fw-bold mb-0">LOAD MORE</p>
+                <a class="fw-bold mb-0" href="{{ route('comics.index') }}">LOAD MORE</a>
             </div>
         </div>
     </div>

@@ -40,7 +40,7 @@
                             </div>
                             <!-- Pulsante per maggiori dettagli (opzionale) -->
                             <div class="card-footer bg-transparent border-0">
-                                <a href="{{ route('comics.show', ['comic' => $comic->id]) }}"
+                                <a href="{{ route('comics.show', ['comic' => $comic['id']]) }}"
                                     class="btn btn-primary w-100">Scopri di più</a>
                             </div>
                         </div>
