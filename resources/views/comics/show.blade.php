@@ -35,10 +35,16 @@
                     <li class="list-group-item"><strong>Scrittori:</strong> {{ $comic->writers }}</li>
                 </ul>
 
-                <!-- Pulsante per modificare fumetto -->
-                <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}" class="btn btn-primary">Modifica</a>
-                <!-- Pulsante per eliminare fumetto -->
-                <a href="{{ route('comics.index') }}" class="btn btn-danger">Cancella</a>
+                <div class="d-flex gap-2">
+                    <!-- Pulsante per modificare fumetto -->
+                    <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}" class="btn btn-primary">Modifica</a>
+                    <!-- Pulsante per eliminare fumetto -->
+                    <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Cancella</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

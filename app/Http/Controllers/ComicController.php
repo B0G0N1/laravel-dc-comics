@@ -118,8 +118,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        // Da implementare: elimina il fumetto con l'ID specificato dal database
-    }
+        $comic->delete();
+    
+        return redirect()->route('comics.index');
+    }    
 }
