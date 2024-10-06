@@ -4,76 +4,99 @@
     <div class="container py-5">
         <h1>Modifica fumetto</h1>
 
-        <!-- Form per aggiungere un nuovo fumetto -->
+        <!-- Form per modificare un fumetto -->
         <form action="{{ route('comics.update', ['comic' => $comic->id]) }}" method="POST">
-            <!-- Protezione CSRF per prevenire attacchi Cross-Site Request Forgery -->
             @csrf
-
             @method('PUT')
 
             <!-- Campo per il titolo del fumetto -->
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
-                <!-- Il valore precedente viene mantenuto in caso di errore nel form (con la funzione old()) -->
-                <input type="text" class="form-control" id="title" name="title" value="{{ $comic->title }}" required>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                    value="{{ old('title', $comic->title) }}" required>
+                @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Campo per la descrizione del fumetto -->
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required>{{ $comic->description }}"</textarea>
+                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+                    rows="3" required>{{ old('description', $comic->description) }}</textarea>
+                @error('description')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Campo per l'URL della miniatura del fumetto -->
             <div class="mb-3">
                 <label for="thumb" class="form-label">URL della miniatura</label>
-                <!-- Input di tipo URL per garantire che l'utente inserisca un link valido -->
-                <input type="url" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}"
-                    required>
+                <input type="url" class="form-control @error('thumb') is-invalid @enderror" id="thumb"
+                    name="thumb" value="{{ old('thumb', $comic->thumb) }}" required>
+                @error('thumb')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Campo per il prezzo del fumetto -->
             <div class="mb-3">
                 <label for="price" class="form-label">Prezzo</label>
-                <!-- Input di tipo numero con step di 0.01 per i prezzi decimali -->
-                <input type="number" step="0.01" class="form-control" id="price" name="price"
-                    value="{{ $comic->price }}" required>
+                <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror"
+                    id="price" name="price" value="{{ old('price', $comic->price) }}" required>
+                @error('price')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Campo per la serie del fumetto -->
             <div class="mb-3">
                 <label for="series" class="form-label">Serie</label>
-                <input type="text" class="form-control" id="series" name="series" value="{{ $comic->series }}"
-                    required>
+                <input type="text" class="form-control @error('series') is-invalid @enderror" id="series"
+                    name="series" value="{{ old('series', $comic->series) }}" required>
+                @error('series')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Campo per la data di vendita del fumetto -->
             <div class="mb-3">
                 <label for="sale_date" class="form-label">Data di Vendita</label>
-                <!-- Input di tipo date per selezionare la data -->
-                <input type="date" class="form-control" id="sale_date" name="sale_date" value="{{ $comic->sale_date }}"
-                    required>
+                <input type="date" class="form-control @error('sale_date') is-invalid @enderror" id="sale_date"
+                    name="sale_date" value="{{ old('sale_date', $comic->sale_date) }}" required>
+                @error('sale_date')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
-            <!-- Campo per il tipo del fumetto (ad esempio graphic novel, comic book, ecc.) -->
+            <!-- Campo per il tipo del fumetto -->
             <div class="mb-3">
                 <label for="type" class="form-label">Tipo</label>
-                <input type="text" class="form-control" id="type" name="type" value="{{ $comic->type }}"
-                    required>
+                <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" name="type"
+                    value="{{ old('type', $comic->type) }}" required>
+                @error('type')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Campo per gli artisti del fumetto -->
             <div class="mb-3">
                 <label for="artists" class="form-label">Artisti</label>
-                <input type="text" class="form-control" id="artists" name="artists" value="{{ $comic->artists }}"
-                    required>
+                <input type="text" class="form-control @error('artists') is-invalid @enderror" id="artists"
+                    name="artists" value="{{ old('artists', $comic->artists) }}">
+                @error('artists')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Campo per gli scrittori del fumetto -->
             <div class="mb-3">
                 <label for="writers" class="form-label">Scrittori</label>
-                <input type="text" class="form-control" id="writers" name="writers" value="{{ $comic->writers }}"
-                    required>
+                <input type="text" class="form-control @error('writers') is-invalid @enderror" id="writers"
+                    name="writers" value="{{ old('writers', $comic->writers) }}">
+                @error('writers')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Pulsante per inviare il form e modificare il fumetto -->
