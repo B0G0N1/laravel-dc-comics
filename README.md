@@ -32,6 +32,20 @@ tramite javascript, quando l'utente clicca sul pulsante "delete", chiedere confe
 Bonus 2: Realizzare una modale di bootstrap attraverso la quale chiedere la conferma della cancellazione del record.
 Buon lavoro!
 
+<!--------------------------
+    CONSEGNA ESERCIZIO 3
+--------------------------->
+
+Esercizio di oggi:
+nome repo: laravel-dc-comics
+Ciao ragazzi,
+sempre lavorando sulla repo di ieri, potete aggiungere le validazioni in modo da rendere più stabile il vostro gestionale di fumetti.
+Bonus:
+
+-   validare gli input ricevuti in fase di creazione e modifica, rispondendo con errori chiari e in italiano.
+-   utilizzare le Request personalizzate per validare i dati
+    Buon lavoro!
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

@@ -38,34 +38,29 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        // Recupero i dati inviati dalla form
-        $form_data = $request->all();
-    
-        // Creo la nuova istanza della classe Comic
+        // Validazione dei dati inviati
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'nullable', // Può essere nullo
+            'thumb' => 'nullable|url', // Può essere nullo ma se presente deve essere un URL valido
+            'price' => 'required|string', // Validato come stringa
+            'series' => 'required|max:255',
+            'sale_date' => 'required|date',
+            'type' => 'required|max:100',
+            'artists' => 'nullable|max:255', // Può essere nullo
+            'writers' => 'nullable|max:255', // Può essere nullo
+        ]);
+
+        // Creo la nuova istanza della classe Comic con i dati validati
         $comic = new Comic();
-
-        $comic->fill($form_data);
-
-        // Valorizzo i suoi attributi
-        // $comic->title = $form_data['title'];
-        // $comic->description = $form_data['description'];
-        // $comic->thumb = $form_data['thumb'];
-        // $comic->price = $form_data['price'];
-        // $comic->series = $form_data['series'];
-        
-        // Imposta una data di default se il campo sale_date è vuoto
-        // $comic->sale_date = '2024-01-01';
-    
-        // $comic->type = $form_data['type'];
-        // $comic->artists = $form_data['artists'];
-        // $comic->writers = $form_data['writers'];
+        $comic->fill($validatedData);
     
         // Salvo l'istanza del fumetto nel database
         $comic->save();
     
         // Effettuo un redirect alla pagina con l'elenco dei fumetti
         return redirect()->route('comics.index');
-    }       
+    }
 
     /**
      * Display the specified resource.
@@ -93,7 +88,7 @@ class ComicController extends Controller
         // Recupera il fumetto con l'ID specificato dal database
         $comic = Comic::find($id);
         
-        // Passa il fumetto alla vista 'edit.show' per la visualizzazione
+        // Passa il fumetto alla vista 'comics.edit' per la visualizzazione
         return view('comics.edit', compact('comic'));
     }
 
@@ -101,27 +96,43 @@ class ComicController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Comic $comic)
     {
-        $form_data = $request->all();
-        $comic->update($form_data);
+        // Validazione dei dati inviati
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'nullable', // Può essere nullo
+            'thumb' => 'nullable|url', // Può essere nullo ma se presente deve essere un URL valido
+            'price' => 'required|string', // Validato come stringa
+            'series' => 'required|max:255',
+            'sale_date' => 'required|date',
+            'type' => 'required|max:100',
+            'artists' => 'nullable|max:255', // Può essere nullo
+            'writers' => 'nullable|max:255', // Può essere nullo
+        ]);
+
+        // Aggiorno il fumetto con i dati validati
+        $comic->update($validatedData);
     
+        // Reindirizzo alla pagina del fumetto aggiornato
         return redirect()->route('comics.show', ['comic' => $comic->id]);
-    }    
+    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Comic  $comic
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comic $comic)
     {
+        // Elimino il fumetto dal database
         $comic->delete();
     
+        // Reindirizzo alla lista dei fumetti
         return redirect()->route('comics.index');
-    }    
+    }
 }
