@@ -41,9 +41,10 @@ class ComicController extends Controller
     public function store(StoreComicRequest $request)
     {
         // I dati sono già validati in StoreComicRequest
+        // Creo una nuova istanza della classe Comic e riempio i campi con i dati validati
         $comic = new Comic();
         $comic->fill($request->validated()); // Usa i dati già validati
-        $comic->save();
+        $comic->save(); // Salva l'istanza nel database
     
         // Effettuo un redirect alla pagina con l'elenco dei fumetti
         return redirect()->route('comics.index');
@@ -89,6 +90,7 @@ class ComicController extends Controller
     public function update(UpdateComicRequest $request, Comic $comic)
     {
         // I dati sono già validati in UpdateComicRequest
+        // Aggiorno il fumetto con i dati validati
         $comic->update($request->validated()); // Usa i dati già validati
     
         // Reindirizzo alla pagina del fumetto aggiornato

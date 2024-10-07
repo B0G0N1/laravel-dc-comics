@@ -13,6 +13,7 @@ class UpdateComicRequest extends FormRequest
      */
     public function authorize()
     {
+        // Determina se l'utente è autorizzato a eseguire questa richiesta
         return true;
     }
 
@@ -23,6 +24,7 @@ class UpdateComicRequest extends FormRequest
      */
     public function rules()
     {
+        // Regole di validazione per l'aggiornamento di un fumetto
         return [
             'title' => 'required|max:255',
             'description' => 'nullable',
@@ -43,6 +45,7 @@ class UpdateComicRequest extends FormRequest
      */
     public function messages()
     {
+        // Messaggi personalizzati per gli errori di validazione
         return [
             'title.required' => 'Il titolo è obbligatorio.',
             'title.max' => 'Il titolo non può superare i 255 caratteri.',
