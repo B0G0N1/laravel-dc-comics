@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 
 class ComicController extends Controller
 {
@@ -34,19 +35,14 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreComicRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        // Utilizzo della funzione di validazione centralizzata
-        $validatedData = $this->validation($request->all());
-
-        // Creo la nuova istanza della classe Comic con i dati validati
+        // I dati sono già validati in StoreComicRequest
         $comic = new Comic();
-        $comic->fill($validatedData);
-    
-        // Salvo l'istanza del fumetto nel database
+        $comic->fill($request->validated()); // Usa i dati già validati
         $comic->save();
     
         // Effettuo un redirect alla pagina con l'elenco dei fumetti
@@ -86,17 +82,14 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateComicRequest  $request
      * @param  \App\Models\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        // Utilizzo della funzione di validazione centralizzata
-        $validatedData = $this->validation($request->all());
-
-        // Aggiorno il fumetto con i dati validati
-        $comic->update($validatedData);
+        // I dati sono già validati in UpdateComicRequest
+        $comic->update($request->validated()); // Usa i dati già validati
     
         // Reindirizzo alla pagina del fumetto aggiornato
         return redirect()->route('comics.show', ['comic' => $comic->id]);
@@ -115,43 +108,5 @@ class ComicController extends Controller
     
         // Reindirizzo alla lista dei fumetti
         return redirect()->route('comics.index');
-    }
-
-    /**
-     * Funzione di validazione centralizzata
-     * 
-     * @param array $data
-     * @return array
-     */
-    private function validation($data)
-    {
-        // Definizione delle regole di validazione
-        $validator = Validator::make($data, [
-            'title' => 'required|max:255',
-            'description' => 'nullable',
-            'thumb' => 'nullable|url',
-            'price' => 'required|string',
-            'series' => 'required|max:255',
-            'sale_date' => 'required|date',
-            'type' => 'required|max:100',
-            'artists' => 'nullable|max:255',
-            'writers' => 'nullable|max:255',
-        ], [
-            'title.required' => 'Il titolo è obbligatorio.',
-            'title.max' => 'Il titolo non può superare i 255 caratteri.',
-            'thumb.url' => "L'URL della miniatura non è valido.",
-            'price.required' => 'Il prezzo è obbligatorio.',
-            'series.required' => 'La serie è obbligatoria.',
-            'series.max' => 'La serie non può superare i 255 caratteri.',
-            'sale_date.required' => 'La data di vendita è obbligatoria.',
-            'sale_date.date' => 'La data di vendita deve essere una data valida.',
-            'type.required' => 'Il tipo è obbligatorio.',
-            'type.max' => 'Il tipo non può superare i 100 caratteri.',
-            'artists.max' => 'Gli artisti non possono superare i 255 caratteri.',
-            'writers.max' => 'Gli scrittori non possono superare i 255 caratteri.',
-        ]);
-
-        // Ritorno i dati validati o lancio eccezione
-        return $validator->validate();
     }
 }
